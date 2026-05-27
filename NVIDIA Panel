@@ -1,0 +1,66 @@
+# **********************************************************************
+# Simple theme for Conky by Tony George (teejee2008@gmail.com)
+# Modificado: Adicionado separador laranja e gráficos
+# Ajuste: Método de leitura instantânea via RAM (Fix 100W+ Bug) - Atualizado para comando direto com formatação
+# FIX: Power Draw agora truncado para inteiro via awk para evitar quebra do gráfico
+# **********************************************************************
+background yes
+double_buffer yes
+alignment bottom_left
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders yes
+draw_outline no
+draw_shades no
+gap_x 630
+gap_y 1445
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_type normal
+own_window_transparent no
+own_window_colour 000000
+own_window_argb_visual yes
+own_window_argb_value 153
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+minimum_size 200 250
+stippled_borders 0
+update_interval 0.5
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+use_xft yes
+xftalpha 0.1
+xftfont Droid Sans:size=10
+override_utf8_locale yes
+color0 white
+color1 EAEAEA
+color2 FFA300
+color3 grey
+TEXT
+${color2}GPU Temp ${alignr}${color0}${execi 5 nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits} °C
+${color2}Fan Speed ${alignr}${color0}${execi 5 nvidia-smi --query-gpu=fan.speed --format=csv,noheader,nounits} %
+${color2}GPU Clock ${alignr}${color0}${execi 5 nvidia-smi --query-gpu=clocks.current.graphics --format=csv,noheader,nounits} MHz
+${color2}Mem Clock ${alignr}${color0}${execi 5 nvidia-smi --query-gpu=clocks.current.memory --format=csv,noheader,nounits} MHz
+${color2}Mem Used ${alignr}${color0}${execi 5 nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits} / ${execi 5 nvidia-smi --query-gpu=memory.total --format=csv,noheader}
+${voffset 5}${color2}${hr 2}
+${voffset 5}${color2}GPU Usage ${alignr}${color0}${execi 2 nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits} %
+${execigraph 2 "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits" 50,200 FFFFFF FFFFFF -m 100}
+${voffset 10}${color2}Power Draw ${alignr}${color0}${execi 1 nvidia-smi --query-gpu=power.draw --format=csv,noheader,nounits | cut -d. -f1} W
+${execigraph 1 "/home/labubu/.conky/TeejeeTech/power-normalize.sh" 50,200 FFFFFF FFFFFF -m 100}
+${color2}Encoder ${alignr}${color0}${execi 2 nvidia-smi --query-gpu=utilization.encoder --format=csv,noheader,nounits} %
+${execigraph 2 "nvidia-smi --query-gpu=utilization.encoder --format=csv,noheader,nounits" 50,200 FFFFFF FFFFFF -m 100}
+${color2}Decoder ${alignr}${color0}${execi 2 nvidia-smi --query-gpu=utilization.decoder --format=csv,noheader,nounits} %
+${execigraph 2 "nvidia-smi --query-gpu=utilization.decoder --format=csv,noheader,nounits" 50,200 FFFFFF FFFFFF -m 100}
+${color2}GPU Clock ${alignr}${color0}${execi 1 nvidia-smi --query-gpu=clocks.current.graphics --format=csv,noheader,nounits | cut -d. -f1} MHz
+${execigraph 1 "/home/labubu/.conky/TeejeeTech/clock-normalize.sh" 50,200 FFFFFF FFFFFF -m 100}
+${voffset 5}${color2}VRAM Clock ${alignr}${color0}${execi 1 nvidia-smi --query-gpu=clocks.current.memory --format=csv,noheader,nounits | cut -d. -f1} MHz
+${execigraph 1 "/home/labubu/.conky/TeejeeTech/vram-clock-normalize.sh" 50,200 FFFFFF FFFFFF -m 100}
