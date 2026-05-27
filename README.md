@@ -1,7 +1,7 @@
 # Conky-Widget-RTX3060-12g
-Esse é um Widget do conky motificado para mostrar informações úteis da sua RTX 3060 12G (e provavelmente muita outras placas Nvidia)
+Esse é um Widget do conky motificado para mostrar informações úteis da sua RTX 3060 12G (e provavelmente outras placas Nvidia)
 
-Acredito que funcione com outras placas Nvidia, só não posso afirmnar pois não testei em outras, porém se as informações reportadas pelo driver nvidia-smi forem no mesmo formato, acredito que funcionaria.
+Acredito que funcione com outras placas Nvidia, só não posso afirmar pois não testei em outras, porém se as informações reportadas pelo driver nvidia-smi forem no mesmo formato, acredito que funcionaria.
 
 <img width="218" height="683" alt="image" src="https://github.com/user-attachments/assets/dbdb87d5-f636-444d-8d04-e59c81ccb953" />
 
